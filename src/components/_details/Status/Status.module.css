@@ -1,0 +1,7 @@
+.status {
+    background-image: url(../../../images/svg/statusbg.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    @apply block bg-opacity-0;
+}

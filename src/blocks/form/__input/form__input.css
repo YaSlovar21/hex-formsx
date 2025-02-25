@@ -1,0 +1,19 @@
+.form__input {
+    margin-bottom: 30px;
+    width: 100%;
+    border: 3px solid black;
+    padding: 20px;
+    background:none;
+
+    color: black;
+
+    transition: border-bottom 0.4s linear;
+    font-size: 20px;
+
+    @apply rounded;
+}
+
+.form__input:focus {
+    border-bottom: 2px solid orangered;
+    outline: none;
+}

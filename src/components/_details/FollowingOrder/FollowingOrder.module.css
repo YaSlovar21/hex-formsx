@@ -1,0 +1,8 @@
+.followbutton {
+    @apply text-indigo-950 text-lg relative pr-2;
+}
+
+.followbutton::after {
+    content: '';
+    @apply w-7 h-[1px] bg-indigo-950 top-1/2 -right-0 absolute translate-x-full;
+}
