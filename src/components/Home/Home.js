@@ -7,7 +7,6 @@ import Orders from "../Orders/Orders";
 function Home() {
     return (
         <>
-            <Header />
             <FreqClients />
             <NeedAttentionOrders />
             <Orders />

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { login } from '../../utils/utils';
+import Header from '../Header/Header';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
+import ControlledOpenSpeedDial from '../_details/SpeedDial/SpeedDial';
 
 import './App.css';
 
@@ -21,13 +23,15 @@ function App() {
       .catch(err => console.log(err))
   }
   return (
-    <div className="App">
+    <div className="content">
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login handleLogin={handleLogin} />} />
       </Routes>
+      <ControlledOpenSpeedDial />
     </div>
-  );
+  );  
 }
 
 export default App;

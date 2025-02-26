@@ -1,3 +1,7 @@
 :root {
     --card-padding: 30px;
 }
+
+.content {
+    @apply max-w-[calc(100%-80px)] w-full mx-auto;
+}
