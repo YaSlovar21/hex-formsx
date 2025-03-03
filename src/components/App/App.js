@@ -1,33 +1,36 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { login } from '../../utils/utils';
+import { getOrders } from '../../services/actions/orders';
+import { getUserData } from '../../services/actions/user';
+
 import Header from '../Header/Header';
+import ProtectedRouteFromAuth from '../HOC/ProtectedRouteFromAuth';
+import ProtectedRouteWithAuth from '../HOC/ProtectedRouteWithAuth';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
+
 import ControlledOpenSpeedDial from '../_details/SpeedDial/SpeedDial';
 
 import './App.css';
 
 function App() {
-  
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [userData, setUserData] = React.useState({});
+  const dispatch = useDispatch();
 
-  function handleLogin(userName, pass) {
-    login(userName, pass)
-      .then((res) => {
-        console.log(res);
-        setIsLoggedIn(true);
-        setUserData(res);
-      })
-      .catch(err => console.log(err))
-  }
+  React.useEffect(() => {
+    dispatch(getUserData());
+    dispatch(getOrders());
+  }, []);
+
+  const orders = useSelector(store => store.orders);
+
   return (
     <div className="content">
+      
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+        <Route path="/" element={<ProtectedRouteWithAuth element={<Home />} />} />
+        <Route path="/login" element={<ProtectedRouteFromAuth element={<Login/>}/> } />
       </Routes>
       <ControlledOpenSpeedDial />
     </div>

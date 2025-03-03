@@ -1,3 +1,12 @@
+export const BASE_URL = 'https://api.hexie.ru';
+
+export const ORDERS_URL = '/orders';
+export const LOGIN_URL = '/login';
+export const LOGOUT_URL = '/logout';
+
+export const USER_URL = '/users/me'; // эндпоинт получения данных о пользователе.
+
+
 export const statusNames = {
     "IN": "Входящее",
     "NEED-INFO": "Требуется уточнение",

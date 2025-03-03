@@ -1,10 +1,14 @@
 
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../../services/actions/user";
 
 import cn from './Login.module.css';
 
 export default function Login(props) {
-  //props.handleRegister - обработчик с APP
+
+  const dispatch = useDispatch();
+
   //управляемые поля
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -18,9 +22,10 @@ export default function Login(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    props.handleLogin(userName, password);
+    dispatch(login(userName, password))
   }
 
+  
   return (
     <form className="form" onSubmit={handleSubmit}>
       <h2 className="form__heading">Вход</h2>
