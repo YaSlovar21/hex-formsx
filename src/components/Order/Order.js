@@ -11,16 +11,20 @@ import FollowingOrder from "../_details/FollowingOrder/FollowingOrder";
 import Status from "../_details/Status/Status";
 
 import styles from './Order.module.css';
+import StatusChangeMenu from "../_details/StatusChangeMenu/StatusChangeMenu";
+import FormattedDate from "../_details/FormattedDate/FormattedDate";
 
-function Order({managerEmail}) {
+function Order({orderData}) {
     return (
       <div className="order text-left">
         <Paper>
-          <div
-            className={`${styles.order__header} px-5 py-7 flex gap-5 justify-between overflow-hidden`}
-          >
-            <Status />
-            <FollowingOrder />
+          <div className={`${styles.order__header} px-5 py-7 flex gap-5 justify-between overflow-hidden`}>
+            <StatusChangeMenu initialStatus={orderData.status}/>
+            <div className="flex items-center">
+                <p className="text-base">#{orderData.id}</p>
+                <FollowingOrder />
+                <FormattedDate date={orderData.date_add} />
+            </div>
           </div>
           <Divider />
           <div className={`${styles.order__managerofclient} px-5 py-7 flex items-center`}>
@@ -30,9 +34,9 @@ function Order({managerEmail}) {
                     </span>
                     <a
                         className="text-sm text-[#1F1EB1] block mt-2"
-                        href={`mailto:${managerEmail}`}
+                        href={`mailto:${`34`}`}
                     >
-                        {managerEmail || "vtorteh@sid-e.ru"}
+                        {orderData?.managerOfClent || "vtorteh@sid-e.ru"}
                     </a>
                 </div>
                
@@ -42,20 +46,7 @@ function Order({managerEmail}) {
             </div>
             <div className={`${styles.order__body} px-5 py-7 flex`}>
                 <p className="text-lg">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas
-                    ut enim, sed facilisis amet ultrices. Tellus amet a, ac risus mi
-                    duis ultricievivmus in dolor, morbi lorem null porttitor. Vitae
-                    enim erat elementum non quis egestas vestibulum amet nec. Eu,
-                    pulvinar rhoncus ut venenatis ut a sed senectus. Eu posuere tempor
-                    gravida sed semper at faucibus. Purus dignissim lobortis nibh
-                    pharetra etiam. Mi cursus dolor quis a elit viverra euismod.
-                    Mauris nunc leo quis maecenas morbi aliquet purus amet, vitae.
-                    Vitae dui dolor morbi praesent. Nunc, porta nunc leo dictum duis.
-                    Et risus nulla sit vitae sed. Viverra amet neque nisi pellentesque
-                    a, nunc condimentum libero. Gravida congue elementum velit, non at
-                    nunc a ut nisi. In sed nunc ultricies enim, quis morbi ac. Id
-                    dolor ultrices fringilla viverra. Bibendum augue ante rutrum eget
-                    dictumst purus volutpat egestas.
+                    {orderData?.content_text}
                 </p>
             </div>
             <div className={`${styles.order__files} px-5 py-7`}>

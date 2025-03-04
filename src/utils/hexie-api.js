@@ -1,4 +1,4 @@
-import { BASE_URL, LOGIN_URL, ORDERS_URL, USER_URL } from "./constants";
+import { BASE_URL, CLIENTS_URL, LOGIN_URL, LOGOUT_URL, ORDERS_URL, USER_URL } from "./constants";
 
 function checkResponseIsOk(res) {
     if(res.ok) {
@@ -21,6 +21,21 @@ export function loginRequest(userName, password) {
         "Authorization": "Bearer 234",
         'Content-Type': 'application/json',
       },
+    }).then((res)=> {
+        return checkResponseIsOk(res);
+    })
+}
+
+export function logoutRequest() {
+    return fetch(`${BASE_URL}${LOGOUT_URL}`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            "Authorization": "Bearer 234",
+            'Content-Type': 'application/json',
+        },
+    }).then((res)=> {
+        return checkResponseIsOk(res);
     })
 }
 
@@ -32,7 +47,9 @@ export const getUserInfoRequest = () => {
             'Content-Type': 'application/json;charset=utf-8',
             "Authorization": "Bearer 234",
         }
-    }).then(res=> res.json())
+    }).then((res)=> {
+        return checkResponseIsOk(res);
+    });
 }
 
 export const getOrdersRequest = () => {
@@ -43,5 +60,21 @@ export const getOrdersRequest = () => {
             'Content-Type': 'application/json;charset=utf-8',
             "Authorization": "Bearer 234",
         }
-    }).then(res=> res.json())
+    }).then((res)=> {
+        return checkResponseIsOk(res);
+    })
 }
+
+export const getClientsRequest = () => {
+    return fetch(`${BASE_URL}${CLIENTS_URL}`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            "Authorization": "Bearer 234",
+        }
+    }).then((res)=> {
+        return checkResponseIsOk(res);
+    })
+}
+

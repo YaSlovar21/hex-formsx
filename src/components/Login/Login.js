@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../services/actions/user";
 
 import cn from './Login.module.css';
@@ -8,6 +8,7 @@ import cn from './Login.module.css';
 export default function Login(props) {
 
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(store => store.user.isLoggedIn);
 
   //управляемые поля
   const [userName, setUserName] = React.useState("");
@@ -27,7 +28,7 @@ export default function Login(props) {
 
   
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className={`form form_hidden ${!isLoggedIn && 'form_block' }`} onSubmit={handleSubmit}>
       <h2 className="form__heading">Вход</h2>
       <input
         className="form__input"
@@ -43,13 +44,7 @@ export default function Login(props) {
         placeholder="Password"
         required
       />
-      <button 
-        type="submit" 
-        className="form__submit"
-      >
-        Войти    
-      </button>
-      
+      <button type="submit" className="form__submit">Войти</button>
     </form>
   );
 }

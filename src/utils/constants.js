@@ -1,6 +1,8 @@
 export const BASE_URL = 'https://api.hexie.ru';
 
 export const ORDERS_URL = '/orders';
+export const CLIENTS_URL = '/clients';
+
 export const LOGIN_URL = '/login';
 export const LOGOUT_URL = '/logout';
 

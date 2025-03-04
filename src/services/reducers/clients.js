@@ -1,4 +1,5 @@
-import { GET_ORDERS_LIST_SUCCESS, GET_ORDERS_LIST_REQUEST } from "../actions/orders";
+import { GET_CLIENTS_LIST_REQUEST, GET_CLIENTS_LIST_SUCCESS } from "../actions/clients";
+
 
 
 const initialState = {
@@ -6,15 +7,15 @@ const initialState = {
     items: [],
 }
 
-export const ordersReducer = (state = initialState, action) => {
+export const clientssReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_ORDERS_LIST_REQUEST: {
+        case GET_CLIENTS_LIST_REQUEST: {
             return {
                 ...state,
                 isRequesting: true,
             };
         }
-        case GET_ORDERS_LIST_SUCCESS: {
+        case GET_CLIENTS_LIST_SUCCESS: {
             return {
                 ...state,
                 isRequesting: false,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { getClients } from '../../services/actions/clients';
 import { getOrders } from '../../services/actions/orders';
 import { getUserData } from '../../services/actions/user';
 
@@ -20,9 +21,10 @@ function App() {
   React.useEffect(() => {
     dispatch(getUserData());
     dispatch(getOrders());
+    dispatch(getClients())
   }, []);
 
-  const orders = useSelector(store => store.orders);
+
 
   return (
     <div className="content">

@@ -1,4 +1,4 @@
-import { getUserInfoRequest, loginRequest } from "../../utils/hexie-api";
+import { getUserInfoRequest, loginRequest, logoutRequest } from "../../utils/hexie-api";
 
 export const SET_USER = 'SET_USER';
 export const SET_USER_LOGOUT= 'SET_USER_LOGOUT';
@@ -18,8 +18,8 @@ export const login = (email, password) => (dispatch) => {
         });
         loginRequest(email, password) 
             .then(res =>{
-                console.log(res);
-                if (res.ok) {
+               
+                if (res) {
                     dispatch({
                         type: LOGIN_SUCCESS,
                         name: `${res.first_name} ${res.last_name}`,
@@ -45,11 +45,11 @@ export const login = (email, password) => (dispatch) => {
 export const getUserData = () => (dispatch) => { 
         getUserInfoRequest()
             .then(res => {
-                if (res.ok) {
+                if (res) {
                     dispatch({
                         type: SET_USER,
-                        name: `Авторизированный юзер`,
-                        username: 'au'
+                        name: `${res.first_name} ${res.last_name}`,
+                        username: res.username
                     });
                 } else {
                     Promise.reject(`Произошла ошибка при получении данных пользователя с сервера. Ошибка ${res.status}`)
@@ -58,19 +58,26 @@ export const getUserData = () => (dispatch) => {
             .catch(e => console.log(e))
     }
 
-/*
+
 export const logout = () => (dispatch) => { 
-        logoutRequest(getCookie('refreshToken') as string)
+        dispatch({
+            type: LOGOUT_REQUEST
+        });
+        logoutRequest()
             .then(res => {
-                if (res.success) {
+                if (res) {
                     dispatch({
                         type: LOGOUT_SUCCESS
                     });
-                    deleteCookie();
                 } else {
                     Promise.reject(`Произошла ошибка при выходе из профиля. Ошибка ${res.status}`)
                 }
             })
-            .catch(e => console.log(e));
+            .catch(e => {
+                dispatch({
+                    type: LOGOUT_ERROR,
+                })
+                console.log(e)
+            });
     }
-*/
+

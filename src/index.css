@@ -10,5 +10,5 @@ html {
 }
 
 body {
-    @apply pt-40;
+    @apply pt-40 h-full;
 }

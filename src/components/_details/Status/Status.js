@@ -3,17 +3,17 @@ import { statusNames } from "../../../utils/constants";
 
 import bgimg from '../../../images/svg/statusbg.svg';
 import cn from './Status.module.css';
-import TransitionsPopper from "../TransitionsPopper/TransitionsPopper";
+import StatusChangeMenu from "../StatusChangeMenu/StatusChangeMenu";
 
 
-function Status({status}) {
+function Status({value}) {
     return (
-        <>
+        <div className="relative">
             <span className={`${cn.status} text-xl`}>
-                <TransitionsPopper text={statusNames[status ? status : 'IN']}/>
+                {statusNames[value ? value : 'IN']}
             </span>
             
-        </>
+        </div>
     )
 }
 

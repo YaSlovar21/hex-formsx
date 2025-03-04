@@ -1,3 +1,4 @@
+import { Star, StarRate, StarRateOutlined } from "@mui/icons-material";
 import React from "react";
 
 import styles from './FollowingOrder.module.css';
@@ -10,7 +11,7 @@ function FollowingOrder() {
     }
 
     return (
-        <button onClick={handleClick} className={styles.followbutton}>{isFollowing ? 'В избранном' : 'В избранное'}</button>
+        <button onClick={handleClick} className={styles.followbutton}>{isFollowing ? (<StarRate />) : (< StarRateOutlined />)}</button>
     );    
 }
 

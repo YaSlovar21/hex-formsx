@@ -1,5 +1,6 @@
 import {
   LOGIN_SUCCESS,
+  LOGOUT_SUCCESS,
   SET_USER,
 } from "../actions/user";
 
@@ -27,6 +28,14 @@ export const userReducer = (state = initialState, action) => {
         name: action.name,
         username: action.username,
         isLoggedIn: true,
+      };
+    }
+    case LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        name: action.name,
+        username: action.username,
+        isLoggedIn: false,
       };
     }
     default: {
