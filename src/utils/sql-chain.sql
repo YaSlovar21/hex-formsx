@@ -1,4 +1,24 @@
+/*
+$vToUpsert = CAST(@@{
+    "emails": [
+        "123123@ya.ru"
+    ],
+    "name": "Wer Wert"
+}@@ as Json);
+
+$values = (
+    SELECT managersOfClient
+    FROM clients
+    WHERE id = 1
+);
+
+/*SELECT CAST(JSON_VALUE($values, "$[0].id") AS Int32),*/
+/*
+SELECT JSON_QUERY($values, "$[*]")
+*/
+
 CREATE TABLE "crm_order" 
+
 (
     "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
     "content_text" text NOT NULL,
