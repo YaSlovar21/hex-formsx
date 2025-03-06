@@ -78,3 +78,18 @@ export const getClientsRequest = () => {
     })
 }
 
+export const putCommentRequest = (commentText, orderId) => {
+    return fetch(`${BASE_URL}/orders/${orderId}/comments`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": "Bearer 234",
+        },
+        body: JSON.stringify({
+            commentText: commentText
+        })
+    }).then((res)=> {
+        return checkResponseIsOk(res);
+    })
+}

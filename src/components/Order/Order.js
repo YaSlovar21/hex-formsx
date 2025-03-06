@@ -61,9 +61,10 @@ function Order({orderData}) {
                     <h3 className="text-lg mr-5">Комментарии</h3>
                     <IconButton size="large"><AddCommentOutlined /></IconButton>
                 </div>
-                <CommentForm />
-                <Comment />
-                <Comment />
+                <CommentForm orderId={orderData.id} />
+                {orderData.comments.map((comment) => (
+                    <Comment key={comment.id}  text={comment.commentText} date={comment?.date} />
+                ))}
             </div>
         </Paper>
       </div>

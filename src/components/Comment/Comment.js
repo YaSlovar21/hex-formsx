@@ -1,5 +1,6 @@
 import { Avatar } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import FormattedDate from "../_details/FormattedDate/FormattedDate";
 
 function stringToColor(string) {
@@ -31,15 +32,17 @@ function stringToColor(string) {
     };
   }
 
-function Comment() {
+function Comment({text, date}) {
+  
+    const userName = useSelector(store => store.user.name);  
+
     return (
         <div className="flex py-2">
-            <Avatar className="mr-5" {...stringAvatar('Вячеслав Невьянцев')} />
+            <Avatar className="mr-5" {...stringAvatar(userName)} />
             <div>
-                <span className="text-xs"><FormattedDate date="2019-07-31"/></span>
+                <span className="text-xs"><FormattedDate date={date}/></span>
                 <p className="text-base">
-                    По 44,45 прошли по цене, договор на согласовании, через 1,5 - 2 недели пришлет.
-                    По 50,8 они выйдут на торги, нам пришлет приглашение на площадку Ростеха.
+                    {text}
                 </p>
             </div>
         </div>

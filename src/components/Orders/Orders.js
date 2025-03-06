@@ -8,11 +8,6 @@ function Orders() {
 
     return (
         <>
-            {orderList.map((item) => 
-                    (
-                        <div key={`test_${item.id}`}>{JSON.stringify(item)}</div>
-                    )
-            )}
             <div className="grid grid-cols-3 gap-20">
                 {orderList.map((item) => 
                     (
