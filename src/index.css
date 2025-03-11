@@ -5,10 +5,37 @@
 @import url(./blocks/_root/root.css);
 @import url(./blocks/form/form.css);
 
+@font-face {
+    font-family: 'HWX';
+    src:
+        url('./fonts/Nagel_Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+  
+@font-face {
+    font-family: 'HWX';
+    src:
+        url('./fonts/Nagel_Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HWX';
+    src:
+        url('./fonts/Nagel_Bold.woff') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+  
+
 html {
     background-color: #f9f9f9;
 }
 
 body {
+    font-family: 'HWX';
     @apply pt-40 h-full;
 }

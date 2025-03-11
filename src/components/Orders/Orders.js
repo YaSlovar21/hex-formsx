@@ -8,7 +8,7 @@ function Orders() {
 
     return (
         <>
-            <div className="grid grid-cols-3 gap-20">
+            <div className="grid grid-cols-3 gap-14 mt-6">
                 {orderList.map((item) => 
                     (
                         <Order orderData={item} key={item.id} />

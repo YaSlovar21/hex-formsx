@@ -1,6 +1,6 @@
 import { Send, SendOutlined } from "@mui/icons-material";
 import { Avatar, Box, FormControl, IconButton, TextField } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import Button from '@mui/joy/Button';
 import Textarea from '@mui/joy/Textarea'
 
@@ -29,17 +29,19 @@ function CommentForm({orderId}) {
   function handleAddCommentSumbit(evt) {
     evt.preventDefault();
     dispatch(putComment(textComment, orderId));
+    commentFormRef.current.reset(); //может быть имеет смысл прочто очистить стейт??
   }
   
-
   function handleTextareaCommentChange(evt) {
     setTextComment(evt.target.value);
   }
 
+  const commentFormRef = useRef();
+
   return (
-      <div className="flex w-full items-start py-2">
+      <div className="flex w-full items-start py-6">
           <Avatar className="mr-5" {...stringAvatar(userName)} />
-          <form className="flex items-start w-full" onSubmit={handleAddCommentSumbit}>
+          <form className="flex items-start w-full" onSubmit={handleAddCommentSumbit} ref={commentFormRef}>
             <Textarea maxRows={4} onChange={handleTextareaCommentChange} placeholder="Введите комментарий" required sx={{ mb: 1, width: '100%' }} />
             <IconButton type="submit" size="large" sx={{color: stringToColor(userName)}} className="mr-auto"><SendOutlined /></IconButton>
           </form>

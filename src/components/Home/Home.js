@@ -1,24 +1,48 @@
-import { CircularProgress } from "@mui/joy";
+import { Add, Search } from "@mui/icons-material";
+import { CircularProgress, IconButton } from "@mui/joy";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import FormClient from "../FormClient/FormClient";
+import FormOrder from "../FormOrder/FormOrder";
 import FreqClients from "../FreqClients/FreqClients";
-import Header from "../Header/Header";
-import NeedAttentionOrders from "../NeedAttentionOrders/NeedAttentionOrders";
+import Modal from "../Modal/Modal";
 import Orders from "../Orders/Orders";
 
 function Home() {
+    const dispatch = useDispatch();
+
     const isRequestingOrders = useSelector(store => store.orders.isRequesting);
     const isRequestingClients = useSelector(store => store.clients.isRequesting);
 
+    const [ isModalAddOrderOpen, setIsModalAddOrderOpen ] = React.useState(false);
+    const [ isModalAddClientOpen, setIsModalAddClientOpen ] = React.useState(false);
+
+    const clientsList = useSelector(store => store.clients.items);
+
     return (
         <>
-            <h2 className="text-4xl font-medium my-3">Клиенты</h2>
+            <div className="flex items-end gap-5 py-2">
+                <h2 className="text-4xl font-medium ">Клиенты</h2>
+                <IconButton variant="outlined" size="md" onClick={()=> {setIsModalAddClientOpen(true)}}>Добавить<Add /></IconButton>
+            </div>
             { isRequestingClients && ( <div className="flex items-center gap-5"><CircularProgress color="success" size="sm" /><p className="block text-3xl top-0 left-0 z-40">Загружаем клиентов фирмы ... </p></div>) }
-            <FreqClients />
-            <NeedAttentionOrders />
-            <h2 className="text-4xl font-medium my-3">Заявки</h2>
+            <FreqClients clientsList={clientsList} />
+
+            {/* заявки */}
+            <div className="flex items-end gap-5 py-2">
+                <h2 className="text-4xl font-medium ">Заявки</h2>
+                <IconButton variant="outlined" size="md" onClick={()=> {setIsModalAddOrderOpen(true)}}>Добавить<Add /></IconButton>
+            </div>
             { isRequestingOrders && ( <div className="flex items-center gap-5"><CircularProgress color="success" size="sm" /><p className="block text-3xl top-0 left-0 z-40">Загружаем заявки фирмы ... </p></div>) }
             <Orders />
+
+            {isModalAddOrderOpen && !isModalAddClientOpen && clientsList && <Modal onEventCloseInModal={()=> {setIsModalAddOrderOpen(false)}}>
+                <FormOrder clientsList={clientsList} />
+            </Modal>}
+
+            {isModalAddClientOpen && !isModalAddOrderOpen && <Modal onEventCloseInModal={()=> {setIsModalAddClientOpen(false)}}>
+                <FormClient  />
+            </Modal>}
         </>
     )
 }

@@ -3,5 +3,5 @@
 }
 
 .content {
-    @apply max-w-[calc(100%-80px)] w-full mx-auto;
+    @apply max-w-[1440px] w-full mx-auto;
 }

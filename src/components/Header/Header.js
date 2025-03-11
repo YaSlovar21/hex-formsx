@@ -14,27 +14,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../services/actions/user";
 import { LogoutOutlined } from "@mui/icons-material";
 
+import Input from '@mui/joy/Input';
+
 function Header() {
 
     const userName = useSelector(store => store.user.username);
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector(store => store.user.isLoggedIn);
 
     function handleLogoutClick() {
         dispatch(logout());
     }
 
     return (
+        
+
         <header className="py-4 w-full fixed top-0 left-0 bg-primary-white border-b border-[#b0b0b0] z-30">
             <div className="content flex justify-between w-full">
                 <Link className="" to={ROUTES.main}><img src={logo} alt="лого" /></Link> 
-                <Box
-                    component="form"
-                    sx={{ '& > :not(style)': { width: '25ch' } }}
-                    noValidate
-                    autoComplete="off"
-                >
-                    <TextField id="outlined-basic" label="номер заявки" variant="outlined" />
-                </Box>
+                {isLoggedIn && <Input size="sm" placeholder="номер заявки" />}
                 <div className="flex items-center">
                     {userName && <p className="mr-4">{userName}</p>}
                     <Dropdown>

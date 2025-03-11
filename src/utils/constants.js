@@ -9,6 +9,8 @@ export const LOGOUT_URL = '/logout';
 export const USER_URL = '/users/me'; // эндпоинт получения данных о пользователе.
 
 
+export const ESC_CODE = 'Escape';
+
 export const statusNames = {
     "IN": "Входящее",
     "NEED-INFO": "Требуется уточнение",

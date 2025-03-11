@@ -1,4 +1,5 @@
 
+import { CircularProgress } from "@mui/joy";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../services/actions/user";
@@ -9,7 +10,7 @@ export default function Login(props) {
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(store => store.user.isLoggedIn);
-
+  const isLoginRequest = useSelector(store => store.user.isLoginRequest);
   //управляемые поля
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -41,10 +42,10 @@ export default function Login(props) {
         className="form__input"
         onChange={handlePassChange}
         type="password"
-        placeholder="Password"
+        placeholder="password"
         required
       />
-      <button type="submit" className="form__submit">Войти</button>
+      <button type="submit" className="form__submit">{!isLoginRequest ? 'Войти' : <><CircularProgress color="success" size="sm" /><span>Заходим...</span></>}</button>
     </form>
   );
 }

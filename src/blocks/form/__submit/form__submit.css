@@ -1,8 +1,8 @@
 .form__submit {
     border: 1px solid;
     width: 100%;
-    padding: 20px 0 20px;
-    margin-top: 186px;
+    padding: 12px 0;
+    margin-top: 40px;
 
-    @apply bg-primary-gray text-3xl;
+    @apply flex items-center justify-center gap-5 text-2xl font-medium  text-white rounded-2xl bg-primary-green;
 }
