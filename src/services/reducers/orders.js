@@ -5,12 +5,16 @@ import {
     SOME_FILES_ADDED,
     POST_ORDER_REQUEST,
     POST_ORDER_SUCCESS,
+    MODAL_ORDER_ADD_FORM_OPEN,
+    MODAL_ORDER_ADD_FORM_CLOSE
 } from "../actions/orders";
 
 
 const initialState = {
-    isRequesting: false,
+    isRequesting: false,  // запрос заявок с сервера
     isOrderAdding: false,
+    isAddModalOpen: false,
+    isOrderAddedSuccess: false,
     items: [],
 }
 
@@ -43,10 +47,23 @@ export const ordersReducer = (state = initialState, action) => {
                 isOrderAdding: true
             }
         }
+        case MODAL_ORDER_ADD_FORM_OPEN: {
+            return {
+                ...state,
+                isAddModalOpen: true
+            }
+        }
+        case MODAL_ORDER_ADD_FORM_CLOSE: {
+            return {
+                ...state,
+                isAddModalOpen: false
+            }
+        }
         case POST_ORDER_SUCCESS: {
             return {
                 ...state,
                 isOrderAdding: false,
+                isAddModalOpen: false,
                 items: state.items.filter(item => item.client_id !== action.clientId).concat(orderArrMapper(action.ordersForClientId)).sort((a,b)=> b.id - a.id) 
             }
         }

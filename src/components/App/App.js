@@ -10,8 +10,7 @@ import ProtectedRouteFromAuth from '../HOC/ProtectedRouteFromAuth';
 import ProtectedRouteWithAuth from '../HOC/ProtectedRouteWithAuth';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
-
-import ControlledOpenSpeedDial from '../_details/SpeedDial/SpeedDial';
+import ClientPage from '../_pages/ClientPage/ClientPage';
 
 import './App.css';
 
@@ -19,22 +18,25 @@ function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getUserData());
-    dispatch(getOrders());
-    dispatch(getClients())
+    dispatch(getUserData());  
   }, []);
 
-
+  const userName = useSelector(store => store.user.username);
+  
+  React.useEffect(()=>{
+    dispatch(getOrders());
+    dispatch(getClients())
+  }, [userName]);
 
   return (
-    <div className="content">
-      
+    <div className="content">      
       <Header />
       <Routes>
         <Route path="/" element={<ProtectedRouteWithAuth element={<Home />} />} />
         <Route path="/login" element={<ProtectedRouteFromAuth element={<Login/>}/> } />
+        <Route path="/clients/:id" element={<ProtectedRouteWithAuth element={<ClientPage />} />} />
       </Routes>
-      <ControlledOpenSpeedDial />
+     
     </div>
   );  
 }

@@ -6,9 +6,13 @@ export const GET_CLIENTS_LIST_SUCCESS = 'GET_CLIENTS_LIST_SUCCESS';
 export const GET_CLIENTS_LIST_ERROR = 'GET_CLIENTS_LIST_ERROR';
 export const GET_CLIENTS_LIST_REQUEST = 'GET_CLIENTS_LIST_REQUEST';
 
+//добавление клмента
 export const POST_CLIENT_SUCCESS = 'POST_CLIENT_SUCCESS';
 export const POST_CLIENT_ERROR = 'POST_CLIENT_ERROR';
 export const POST_CLIENT_REQUEST = 'POST_CLIENT_REQUEST';
+
+export const MODAL_CLIENT_ADD_FORM_OPEN = 'MODAL_CLIENT_ADD_FORM_OPEN';
+export const MODAL_CLIENT_ADD_FORM_CLOSE = 'MODAL_CLIENT_ADD_FORM_CLOSE';
 
 export const getClients = () => (dispatch) => { 
     dispatch({
@@ -20,7 +24,7 @@ export const getClients = () => (dispatch) => {
                 console.log(res);
                 dispatch({
                     type: GET_CLIENTS_LIST_SUCCESS,
-                    orders: res
+                    clients: res
                 })
             } else {
                 Promise.reject(`Не получилось список заявок orders. Ошибка ${res.status}`)

@@ -63,19 +63,19 @@ function Order({orderData}) {
                 <p className="text-lg">
                     {orderData?.content_text}
                 </p>
+                
             </div>
             <div className={`${styles.order__files} px-5 py-7`}>
                 <h3 className="text-lg mr-5 font-medium">Файлы</h3>
               
                 <div className="flex items-start gap-5 pt-2 mt-4 border-t border-primary-lightgray">
                     <IconButton variant={isFormLoadVisible ? `solid` :`outlined`} onClick={handleFormLoadChangeView} className="rounded-full" size="md"><AttachFile /></IconButton>
-                    {orderData.files.length >0 && <OrderFilesList files={orderData.files} /> }
+                    {orderData.files.length >0 && <OrderFilesList files={orderData.files} orderId={orderData.id} /> }
                 </div>
             
                 { isFormLoadVisible && <FileUploadForm orderId={orderData.id} handleFilesLoaded={handleFilesLoaded} />}
             </div>
             <div className={`${styles.order__comments} px-5 py-7`}>
-               
                 <h3 className="text-lg mr-5 font-medium">Комментарии</h3>
                 <CommentForm className="py-6" orderId={orderData.id} />
                 {orderData.comments.map((comment) => (

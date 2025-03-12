@@ -83,7 +83,6 @@ export const postOrderRequest = (clientId, orderText) => {
     })
 }
 
-
 export const getClientsRequest = () => {
     return fetch(`${BASE_URL}${CLIENTS_URL}`, {
         method: 'GET',
