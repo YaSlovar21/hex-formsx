@@ -5,6 +5,22 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'pc': {'max': '1620px'},
+        // => @media (max-width: 1535px) { ... }
+  
+        'mvpc': {'max': '1441px'},
+        // => @media (max-width: 1441px) { ... }
+  
+        'olpc': {'max': '1240px'},
+
+        'laptop': {'max': '1024px'},
+        // => @media (max-width: 1024px) { ... }
+  
+        'mobile': {'max': '639px'},
+        // => @media (max-width: 639px) { ... }
+        'mobilesm': { 'max': '345px' },
+      },
       colors: {
         primary: {
           green : '#06872C',

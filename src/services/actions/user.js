@@ -12,11 +12,11 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_ERROR = 'LOGOUT_ERROR';
 
 
-export const login = (email, password) => (dispatch) => { 
+export const login = (org, email, password) => (dispatch) => { 
         dispatch({
             type: LOGIN_REQUEST
         });
-        loginRequest(email, password) 
+        loginRequest(org, email, password) 
             .then(res =>{
                
                 if (res) {

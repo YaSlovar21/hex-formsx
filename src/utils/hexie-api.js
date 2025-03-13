@@ -9,11 +9,12 @@ function checkResponseIsOk(res) {
     }
 }
 
-export function loginRequest(userName, password) {
+export function loginRequest(org, userName, password) {
     return fetch(`${BASE_URL}${LOGIN_URL}`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({
+        org: org,
         username: userName,
         password: password
       }),
@@ -115,6 +116,24 @@ export const postClientRequest = (nameOfClient, email, tel, note) => {
     })
 }
 
+export const postManagerOfClientRequest = (clientId, fio, email, tel, comment) =>{
+    return fetch(`${BASE_URL}${CLIENTS_URL}/${clientId}/managers`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": "Bearer 234",
+        },
+        body: JSON.stringify({
+            fio,
+            email,
+            tel,
+            comment
+        })    
+    }).then((res)=> {
+        return checkResponseIsOk(res);
+    })
+}
 
 export const putCommentRequest = (commentText, orderId) => {
     return fetch(`${BASE_URL}/orders/${orderId}/comments`, {

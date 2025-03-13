@@ -8,7 +8,7 @@ function Orders() {
 
     return (
         <>
-            <div className="grid grid-cols-3 gap-14 mt-6">
+            <div className="grid grid-cols-3 gap-14 mt-6 mvpc:gap-5 olpc:grid-cols-2 laptop:grid-cols-1">
                 {orderList.map((item) => 
                     (
                         <Order orderData={item} key={item.id} />

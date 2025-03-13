@@ -3,7 +3,7 @@
 }
 
 .content {
-    @apply max-w-[1440px] w-full mx-auto;
+    @apply max-w-[1440px] w-full mx-auto mvpc:max-w-[calc(100%-40px)];
 }
 
 .cus-paper{

@@ -5,6 +5,8 @@ import {
     POST_CLIENT_SUCCESS,
     MODAL_CLIENT_ADD_FORM_OPEN,
     MODAL_CLIENT_ADD_FORM_CLOSE,
+    POST_MANAGER_OF_CLIENT_REQUEST,
+    POST_MANAGER_OF_CLIENT_SUCCESS,
 } from "../actions/clients";
 
 
@@ -15,6 +17,14 @@ const initialState = {
     isAddingNew: false,
     items: [],
 }
+
+function clientArrMapper(clientArr) {
+    return clientArr.map(clientObj => ({
+        ...clientObj,
+        managersOfClient: JSON.parse(clientObj.managersOfClient),
+    }))
+}
+
 
 export const clientssReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -28,9 +38,23 @@ export const clientssReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isRequesting: false,
-                items: action.clients
+                items: clientArrMapper(action.clients)
             };
         }
+        /* -------- MANAGER OF CLIENT -------- */
+        case POST_MANAGER_OF_CLIENT_REQUEST: {
+            return {
+                ...state,
+                items: state.items.map(i => i.id === action.clientId ? ({...i, isManagerAdding: true}) : i )
+            }
+        }
+        case POST_MANAGER_OF_CLIENT_SUCCESS: {
+            return {
+                ...state,
+                items: state.items.map(i => i.id === action.client.id ? action.client: i )
+            }
+        }
+        /* -------------------------- */
         case POST_CLIENT_REQUEST: {
             return {
                 ...state,

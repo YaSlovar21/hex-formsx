@@ -22,11 +22,16 @@ function App() {
   }, []);
 
   const userName = useSelector(store => store.user.username);
-  
+  const clients = useSelector(store => store.clients.items);
+
   React.useEffect(()=>{
-    dispatch(getOrders());
     dispatch(getClients())
   }, [userName]);
+
+
+  React.useEffect(()=>{
+    dispatch(getOrders());
+  }, [clients]);
 
   return (
     <div className="content">      
