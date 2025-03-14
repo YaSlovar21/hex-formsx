@@ -84,6 +84,22 @@ export const postOrderRequest = (clientId, orderText) => {
     })
 }
 
+export const patchOrderWithNewManOfClientRequest = ( orderId, newManId) => {
+    return fetch(`${BASE_URL}${ORDERS_URL}/${orderId}/manager`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": "Bearer 234",
+        },
+        body: JSON.stringify({
+            newManId,
+        })    
+    }).then((res)=> {
+        return checkResponseIsOk(res);
+    })
+}
+
 export const getClientsRequest = () => {
     return fetch(`${BASE_URL}${CLIENTS_URL}`, {
         method: 'GET',

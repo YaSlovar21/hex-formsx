@@ -1,17 +1,26 @@
 import { CallOutlined, Close, Edit } from "@mui/icons-material";
 import { IconButton } from "@mui/joy";
 import React, { useState } from "react";
+import { patchOrderWithNewManOfClientRequest } from "../../utils/hexie-api";
 import ManagerOfClient from "../_details/ManagerOfClient/ManagerOfClient";
 
-function OrderManagerOfClient({managers, clientId}){
+function OrderManagerOfClient({managers, currentManagerId, clientId, orderId}){
 
     const [currentMan, setCurrentMan] = useState(null);
     const [isChangeCurrentManager, setIsChangeCurrentManager] = useState(null);
     
+    React.useEffect(()=> {
+        setCurrentMan(managers.find(m=> m.id === currentManagerId))
+    }, [currentManagerId])
 
     function handleChangeMan(man){
         setCurrentMan(man);
         setIsChangeCurrentManager(false);
+        patchOrderWithNewManOfClientRequest(orderId, man.id)
+            .then((res)=> {
+                console.log(res);
+            })
+            .catch(e=> console.log(e));
         console.log({
             clientId: clientId,
             newManId: man.id,

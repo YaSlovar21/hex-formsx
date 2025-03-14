@@ -49,7 +49,7 @@ function Order({orderData}) {
             </div>
             <Divider />
             <div className={`${styles.order__managerofclient} px-5 py-7 flex items-center`}>
-                {clientOwner && <OrderManagerOfClient managers={clientOwner.managersOfClient} clientId={clientOwner.id} />}
+                {clientOwner && <OrderManagerOfClient currentManagerId={orderData.manager_id} orderId={orderData.id} managers={clientOwner.managersOfClient} clientId={clientOwner.id} />}
             </div>
             <div className={`${styles.order__body} px-5 py-7 flex`}>
                 <p className="text-lg">
